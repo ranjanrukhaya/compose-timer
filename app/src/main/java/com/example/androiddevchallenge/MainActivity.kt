@@ -20,6 +20,8 @@ import android.widget.ImageButton
 import androidx.activity.compose.setContent
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import androidx.compose.animation.AnimatedVisibility
+import androidx.compose.animation.ExperimentalAnimationApi
 import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -42,6 +44,7 @@ import androidx.compose.ui.unit.sp
 import com.example.androiddevchallenge.ui.theme.MyTheme
 import com.example.androiddevchallenge.viewmodel.TimerViewModel
 
+@ExperimentalAnimationApi
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -106,24 +109,58 @@ class MainActivity : AppCompatActivity() {
                                 modifier = Modifier.padding(0.dp, 15.dp)
                             )
 
-                            Card(
-                                modifier = Modifier
-                                    .size(48.dp)
-                                    .padding(5.dp)
-                                    .clickable(onClick = { if (play) viewModel.pause() else viewModel.start() }),
-                                shape = CircleShape,
-                                elevation = 2.dp,
-                                backgroundColor = Color(0xFF101f3a)
-                            ) {
-                                Image(
-                                    painter = if (play) painterResource(id = R.drawable.ic_pause) else painterResource(
-                                        R.drawable.ic_play
-                                    ),
-                                    contentDescription = null
-                                )
+                            Row() {
+                                AnimatedVisibility(visible = play) {
+                                    Card(
+                                        modifier = Modifier
+                                            .size(48.dp)
+                                            .padding(5.dp)
+                                            .clickable(onClick = { viewModel.pause() }),
+                                        shape = CircleShape,
+                                        elevation = 2.dp,
+                                        backgroundColor = Color(0xFF101f3a)
+                                    ) {
+                                        Image(
+                                            painter = painterResource(id = R.drawable.ic_pause),
+                                            contentDescription = null
+                                        )
+                                    }
+                                }
+
+                                AnimatedVisibility(visible = !play) {
+                                    Card(
+                                        modifier = Modifier
+                                            .size(48.dp)
+                                            .padding(5.dp)
+                                            .clickable(onClick = { viewModel.start() }),
+                                        shape = CircleShape,
+                                        elevation = 2.dp,
+                                        backgroundColor = Color(0xFF101f3a)
+                                    ) {
+                                        Image(
+                                            painter = painterResource(id = R.drawable.ic_play),
+                                            contentDescription = null
+                                        )
+                                    }
+                                }
+
+                                AnimatedVisibility(visible = play) {
+                                    Card(
+                                        modifier = Modifier
+                                            .size(48.dp)
+                                            .padding(5.dp)
+                                            .clickable(onClick = { viewModel.restart() }),
+                                        shape = CircleShape,
+                                        elevation = 2.dp,
+                                        backgroundColor = Color(0xFF101f3a)
+                                    ) {
+                                        Image(
+                                            painter = painterResource(id = R.drawable.ic_replay),
+                                            contentDescription = null
+                                        )
+                                    }
+                                }
                             }
-
-
                         }
                     }
                 }

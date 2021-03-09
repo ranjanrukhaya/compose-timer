@@ -19,6 +19,7 @@ class TimerViewModel : ViewModel() {
         if (_timerValue.value == 0) _timerValue.value = times
         job?.cancel()
         job = viewModelScope.launch(Dispatchers.IO) {
+            delay(timeMillis = 200)
             while (isActive) {
                 if (_timerValue.value <= 0) {
                     job?.cancel()
@@ -41,5 +42,10 @@ class TimerViewModel : ViewModel() {
         job?.cancel()
         _timerValue.value = 0
         _play.value = true
+    }
+
+    fun restart() {
+        stop()
+        start()
     }
 }
