@@ -1,12 +1,12 @@
 # Countdown Timer Android Dev Challenge using Compose
 
 ## :scroll: Description
-<!--- This is sprint timer app for 15 sec training sessions. Start timer with play button. Pause 
-the timer when you want with the pause icon button and reset to start again. -->
+This is sprint timer app for 15 sec training sessions. Start timer with play button. Pause 
+the timer when you want with the pause icon button and reset to start again.
 
 
 ## :bulb: Motivation and Context
-<!--- Challenge is create countdown timer app using all new Jetpack Compose. I am already loving it. -->
+Challenge is create countdown timer app using all new Jetpack Compose. I am already loving it.
 
 
 ## :camera_flash: Screenshots
